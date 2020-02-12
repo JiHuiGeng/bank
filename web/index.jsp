@@ -31,7 +31,7 @@
     <div class="form-group">
         <label for="outBalance" class="col-sm-2 control-label">金额</label>
         <div class="col-sm-2">
-            <input type="password" class="form-control" id="outBalance" name="outBalance" placeholder="请输入金额">
+            <input type="text" class="form-control" id="outBalance" name="outBalance" placeholder="请输入金额">
         </div>
     </div>
 

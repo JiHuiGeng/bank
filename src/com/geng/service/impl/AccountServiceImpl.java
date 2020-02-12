@@ -10,7 +10,6 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.math.BigDecimal;
 
 /**
  * 用款账户业务逻辑实现
@@ -45,8 +44,10 @@ public class AccountServiceImpl implements AccountService {
                 Account selectByIn = sqlSession.selectOne("com.geng.mapper.AccountMapper.selectByAccNoAndName", in);
                 //判断转入账户信息是否存在
                 if (selectByIn != null) {
+                    in.setBalance(out.getBalance());
                     //更新转出账户的余额
                     out.setBalance((out.getBalance().negate()));
+
                     int index = sqlSession.update("com.geng.mapper.AccountMapper.updateBalanceByAccNo", out);
                     //更新转入账户的余额
                     index += sqlSession.update("com.geng.mapper.AccountMapper.updateBalanceByAccNo", in);

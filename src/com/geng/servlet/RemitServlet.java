@@ -32,6 +32,7 @@ public class RemitServlet extends HttpServlet {
      */
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
         //实例化一个转出账户对象
         Account accountOut = new Account();
         //前端传来的转出账户
@@ -58,7 +59,7 @@ public class RemitServlet extends HttpServlet {
             HttpSession session = req.getSession();
             //session设置返回码
             session.setAttribute("code", returnCode);
-            res.sendRedirect("/bank/error/error.jsp");
+            res.sendRedirect("/bank/error.jsp");
         }
     }
 }
