@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <package name="com.geng.pojo"/>
+    </typeAliases>
+    <environments default="default">
+        <environment id="default">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED"></dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="com/geng/mapper/AccountMapper.xml"></mapper>
+    </mappers>
+</configuration>
