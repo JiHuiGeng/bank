@@ -1,5 +1,5 @@
 # bank
-技术:java jdk8 mybatis-3.4.6 tomcat9.0.26 jsp servlet jstl bootstrap js
+技术:java+jdk8+mybatis-3.4.6+tomcat9.0.26+jsp+servlet+jstl+bootstrap+js
 
 业务：
       简单的银行转账业务实现；
