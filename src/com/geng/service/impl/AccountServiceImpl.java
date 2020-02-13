@@ -1,15 +1,18 @@
 package com.geng.service.impl;
 
 import com.geng.pojo.Account;
+import com.geng.pojo.Log;
 import com.geng.service.AccountService;
 import com.geng.utils.StatusForFirm;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Calendar;
 
 /**
  * 用款账户业务逻辑实现
@@ -52,6 +55,19 @@ public class AccountServiceImpl implements AccountService {
                     //更新转入账户的余额
                     index += sqlSession.update("com.geng.mapper.AccountMapper.updateBalanceByAccNo", in);
                     if (index == 2) {
+                        //首先记录成功日志
+                        Log log = new Log();
+                        //转入账户
+                        log.setInAccNo(in.getAccNo());
+                        //转出账户
+                        log.setOutAccNo(out.getAccNo());
+                        //金额
+                        log.setMoney(in.getBalance());
+                        //记录日志
+                        sqlSession.insert("com.geng.mapper.LogMapper.insertLog", log);
+                        Logger logger = Logger.getLogger(AccountServiceImpl.class);
+                        //日志打印
+                        logger.info(log.getOutAccNo() + "给" + log.getInAccNo() + "转了:" + log.getMoney() + ",时间:" + Calendar.getInstance());
                         sqlSession.commit();
                         sqlSession.close();
                         //返回交易执行成功
