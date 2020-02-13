@@ -3,7 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.geng.mapper.LogMapper">
+    <!--记录日志插入log表-->
     <insert id="insertLog" parameterType="log">
         insert into log values(default ,#{inAccNo},#{outAccNo},#{money});
     </insert>
+    <!--分页查询,传值map,起始页，每页显示数,返回Log实体类-->
+    <select id="selectPage" parameterType="map" resultType="log">
+        select * from log limit #{pageStart},#{pageSize};
+    </select>
+    <!--查询日志总行数,返回值-->
+    <select id="selectCount" resultType="int">
+        select count(*) from log;
+    </select>
 </mapper>

@@ -53,7 +53,7 @@ public class RemitServlet extends HttpServlet {
 
         if (returnCode == statusForFirm.SUCCESS) {
             //如果返回成功跳转log页面
-            res.sendRedirect("/bank/log.jsp");
+            res.sendRedirect("/bank/show");
         } else {
             //失败跳转error页面
             HttpSession session = req.getSession();
