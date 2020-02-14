@@ -4,7 +4,7 @@
 
      java运行环境：jdk8
 
-     数据持久化框架：mybatis-3.4.6
+     框架：spring4.0+mybatis-3.4.6
 
      数据库：MySQL
 
