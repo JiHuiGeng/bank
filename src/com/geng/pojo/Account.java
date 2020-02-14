@@ -77,4 +77,15 @@ public class Account {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", accNo='" + accNo + '\'' +
+                ", password=" + password +
+                ", balance=" + balance +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

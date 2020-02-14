@@ -3,6 +3,7 @@ package com.geng.service;
 import com.geng.pojo.Account;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * 用款账户业务逻辑接口
@@ -16,5 +17,12 @@ public interface AccountService {
      * @param out
      * @return
      */
-    public int remit(Account in, Account out) throws IOException;
+    int remit(Account in, Account out) throws IOException;
+
+    /**
+     * selectAll
+     *
+     * @return
+     */
+    List<Account> selectAll();
 }
