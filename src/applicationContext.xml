@@ -27,8 +27,13 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
 
+    <!--accountService-->
     <bean id="accountService" class="com.geng.service.impl.AccountServiceImpl">
         <property name="accountMapper" ref="accountMapper"></property>
+        <property name="logMapper" ref="logMapper"></property>
+    </bean>
+    <!--logService-->
+    <bean id="logService" class="com.geng.service.impl.LogServiceImpl">
         <property name="logMapper" ref="logMapper"></property>
     </bean>
 </beans>
