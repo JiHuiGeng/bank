@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.2.xsd">
     <!--    &lt;!&ndash;-->
     <!--        id表示：需要获取对象的标识-->
     <!--        class表示：需要创建具体哪个类的对象-->
@@ -18,13 +21,14 @@
     </bean>
     <!--将数据源放入sqlSessionFactory中-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="configLocation" value="classpath:com/mybatis-config.xml"></property>
     </bean>
     <!--配置mybatis包路径下class的扫描-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <!--扫描该包下的所有类或者接口等-->
-        <property name="basePackage" value="com.geng.mapper"/>
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <!--扫描该包下的所有类或者接口或映射文件等-->
+        <property name="basePackage" value="com.geng.mapper"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
     </bean>
 
     <!--accountService-->
@@ -36,4 +40,6 @@
     <bean id="logService" class="com.geng.service.impl.LogServiceImpl">
         <property name="logMapper" ref="logMapper"></property>
     </bean>
+    <!--自动扫描包-->
+    <context:component-scan base-package="com.geng"/>
 </beans>

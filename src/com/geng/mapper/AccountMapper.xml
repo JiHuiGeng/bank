@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geng.mapper.AccountMapper">
+    <!--selectByAccNoAndPW-->
+    <select id="selectByAccNoAndPW" resultType="account" parameterType="account">
+        SELECT * FROM account WHERE accNo=#{accNo} AND password=#{password};
+    </select>
+    <!--selectByAccNoAndName-->
+    <select id="selectByAccNoAndName" resultType="account" parameterType="account">
+    SELECT * FROM account WHERE accNo=#{accNo} AND name=#{name};
+    </select>
+    <!--selectById-->
+    <select id="selectById" resultType="account" parameterType="int">
+    SELECT * FROM account WHERE id=#{id};
+    </select>
+    <!--selectAll-->
+    <select id="selectAll">
+        SELECT * FROM account;
+    </select>
+    <!--updateBalanceByAccNo-->
+    <update id="updateBalanceByAccNo" parameterType="account">
+        UPDATE account SET balance=balance+#{balance} WHERE accNo=#{accNo};
+    </update>
+</mapper>

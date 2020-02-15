@@ -1,42 +1,38 @@
 package com.geng.mapper;
 
 import com.geng.pojo.Log;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 /**
  * LogMapper
  */
+@Component("logMapper")
 public interface LogMapper {
+
     /**
      * selectCount
      *
      * @return
      */
-    @Select("SELECT COUNT(*) FROM log")
     int selectCount();
 
     /**
      * selectPage
      *
-     * @param pageStart
-     * @param pageSize
+     * @param map
      * @return
      */
-    @Select("SELECT * FROM log LIMIT #{pageStart},#{pageSize}")
-    List<Log> selectPage(int pageStart, int pageSize);
+    List<Log> selectPage(Map<String, Object> map);
+
 
     /**
      * insertLog
      *
-     * @param inAccNo
-     * @param outAccNo
-     * @param money
+     * @param log
      * @return
      */
-    @Insert("INSERT INTO log VALUES(default ,#{inAccNo},#{outAccNo},#{money})")
-    int insertLog(String inAccNo, String outAccNo, BigDecimal money);
+    int insertLog(Log log);
 }

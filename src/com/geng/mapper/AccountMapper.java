@@ -1,35 +1,33 @@
 package com.geng.mapper;
 
 import com.geng.pojo.Account;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
  * AccountMapper
  */
+@Component("accountMapper")
 public interface AccountMapper {
+
     /**
      * selectByAccNoAndPW
      *
-     * @param accNo
-     * @param password
+     * @param account
      * @return
      */
-    @Select("SELECT * FROM account WHERE accNo=? AND password=? ")
-    Account selectByAccNoAndPW(String accNo, int password);
+    Account selectByAccNoAndPW(Account account);
+
 
     /**
      * selectByAccNoAndName
      *
-     * @param accNo
-     * @param name
+     * @param account
      * @return
      */
-    @Select("SELECT * FROM account WHERE accNo=? AND name=?")
-    Account selectByAccNoAndName(String accNo, String name);
+    Account selectByAccNoAndName(Account account);
 
     /**
      * selectById
@@ -37,24 +35,22 @@ public interface AccountMapper {
      * @param id
      * @return
      */
-    @Select("SELECT * FROM account WHERE id=?")
     Account selectById(int id);
+
 
     /**
      * selectAll
      *
      * @return
      */
-    @Select("SELECT * FROM account")
     List<Account> selectAll();
+
 
     /**
      * updateBalanceByAccNo
      *
-     * @param balance
-     * @param accNo
+     * @param account
      * @return
      */
-    @Update("UPDATE account SET balance=balance+#{balance} WHERE accNo=#{accNo};")
-    int updateBalanceByAccNo(BigDecimal balance, String accNo);
+    int updateBalanceByAccNo(Account account);
 }

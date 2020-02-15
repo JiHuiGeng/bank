@@ -3,9 +3,11 @@ package com.geng.service.impl;
 import com.geng.mapper.AccountMapper;
 import com.geng.mapper.LogMapper;
 import com.geng.pojo.Account;
+import com.geng.pojo.Log;
 import com.geng.service.AccountService;
 import com.geng.utils.StatusForFirm;
 import org.apache.ibatis.io.Resources;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,12 +47,12 @@ public class AccountServiceImpl implements AccountService {
      */
     @Override
     public int remit(Account in, Account out) throws IOException {
-        Account selectByOut = accountMapper.selectByAccNoAndPW(out.getAccNo(), out.getPassword());
+        Account selectByOut = accountMapper.selectByAccNoAndPW(out);
         if (selectByOut != null) {
             //如果转出金额<=余额，那么允许进行下一步
             if (out.getBalance().compareTo(selectByOut.getBalance()) <= 0) {
                 //根据传入的转入账户和姓名查询转入账户信息
-                Account selectIn = accountMapper.selectByAccNoAndName(in.getAccNo(), in.getName());
+                Account selectIn = accountMapper.selectByAccNoAndName(in);
                 //转入账户信息存在
                 if (selectIn != null) {
                     //更新转入账户的余额
@@ -58,11 +60,15 @@ public class AccountServiceImpl implements AccountService {
                     //更新转出账户余额(为负)
                     out.setBalance(out.getBalance().negate());
                     //更新数据库
-                    int index = accountMapper.updateBalanceByAccNo(out.getBalance(), out.getAccNo());
-                    index += accountMapper.updateBalanceByAccNo(in.getBalance(), in.getAccNo());
+                    int index = accountMapper.updateBalanceByAccNo(out);
+                    index += accountMapper.updateBalanceByAccNo(in);
                     if (index == 2) {
+                        Log log = new Log();
+                        log.setInAccNo(in.getAccNo());
+                        log.setOutAccNo(out.getAccNo());
+                        log.setMoney(in.getBalance());
                         //记录日志
-                        int i = logMapper.insertLog(in.getAccNo(), out.getAccNo(), in.getBalance());
+                        int i = logMapper.insertLog(log);
                         //成功
                         return statusForFirm.SUCCESS;
                     } else {

@@ -34,7 +34,7 @@ public class RemitServlet extends HttpServlet {
         //将tomcat启动时加载的xml资源取出
         WebApplicationContext requiredWebApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
         //获取其中accountService所属资源
-        accountService = requiredWebApplicationContext.getBean("accountServiceImpl", AccountServiceImpl.class);
+        accountService = requiredWebApplicationContext.getBean("accountService", AccountServiceImpl.class);
     }
 
     /**

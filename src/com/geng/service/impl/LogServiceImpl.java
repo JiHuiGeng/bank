@@ -40,9 +40,11 @@ public class LogServiceImpl implements LogService {
      */
     @Override
     public PageHelper showPage(int pageSize, int pageNumber) throws IOException {
-        int pageStart = pageSize * (pageNumber - 1);
+        Map<String, Object> map = new HashMap<>();
+        map.put("pageStart", pageSize * (pageNumber - 1));
+        map.put("pageSize", pageSize);
         //查询log日志
-        List<Log> logList = logMapper.selectPage(pageStart, pageSize);
+        List<Log> logList = logMapper.selectPage(map);
         int total = logMapper.selectCount();
         PageHelper pageHelper = new PageHelper();
         //放入日志list
