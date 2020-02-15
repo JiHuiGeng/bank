@@ -4,6 +4,8 @@ import com.geng.pojo.Account;
 import com.geng.service.AccountService;
 import com.geng.service.impl.AccountServiceImpl;
 import com.geng.utils.StatusForFirm;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +21,21 @@ import java.math.BigDecimal;
  */
 @WebServlet("/remit")
 public class RemitServlet extends HttpServlet {
-    private AccountService accountService = new AccountServiceImpl();
+    private AccountService accountService;
     private StatusForFirm statusForFirm;
+
+    /**
+     * 初始化
+     *
+     * @throws ServletException
+     */
+    @Override
+    public void init() throws ServletException {
+        //将tomcat启动时加载的xml资源取出
+        WebApplicationContext requiredWebApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
+        //获取其中accountService所属资源
+        accountService = requiredWebApplicationContext.getBean("accountServiceImpl", AccountServiceImpl.class);
+    }
 
     /**
      * 转账

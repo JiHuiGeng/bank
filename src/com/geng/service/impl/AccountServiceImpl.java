@@ -45,14 +45,6 @@ public class AccountServiceImpl implements AccountService {
      */
     @Override
     public int remit(Account in, Account out) throws IOException {
-//        InputStream resourceAsStream = Resources.getResourceAsStream("mybatis.xml");
-//        //获得sqlSessionFactory,建造者模式
-//        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
-//        //获得sqlSession
-//        SqlSession sqlSession = sqlSessionFactory.openSession();
-//
-//        //根据传入的转出账户和密码查询转出账户信息
-//        Account selectByOut = sqlSession.selectOne("com.geng.mapper.AccountMapper.selectByAccNoAndPW", out);
         Account selectByOut = accountMapper.selectByAccNoAndPW(out.getAccNo(), out.getPassword());
         if (selectByOut != null) {
             //如果转出金额<=余额，那么允许进行下一步
@@ -89,6 +81,14 @@ public class AccountServiceImpl implements AccountService {
             //账户及密码错误
             return statusForFirm.ACCOUNT_AND_PASSWORD_NOT_MATCH;
         }
+        //        InputStream resourceAsStream = Resources.getResourceAsStream("mybatis.xml");
+//        //获得sqlSessionFactory,建造者模式
+//        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+//        //获得sqlSession
+//        SqlSession sqlSession = sqlSessionFactory.openSession();
+//
+//        //根据传入的转出账户和密码查询转出账户信息
+//        Account selectByOut = sqlSession.selectOne("com.geng.mapper.AccountMapper.selectByAccNoAndPW", out);
 //        //如果转入账户不为空
 //        if (selectByOut != null) {
 //            //如果需要转出金额小于或等于余额，那么允许进行下一步

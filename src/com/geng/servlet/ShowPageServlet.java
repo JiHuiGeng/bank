@@ -3,6 +3,8 @@ package com.geng.servlet;
 import com.geng.service.LogService;
 import com.geng.service.impl.LogServiceImpl;
 import com.geng.utils.PageHelper;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +18,20 @@ import java.io.IOException;
  */
 @WebServlet(value = {"/show"})
 public class ShowPageServlet extends HttpServlet {
-    private LogService logService = new LogServiceImpl();
+    private LogService logService;
+
+    /**
+     * 初始化
+     *
+     * @throws ServletException
+     */
+    @Override
+    public void init() throws ServletException {
+        //获取tomcat启动时加载的xml资源
+        WebApplicationContext requiredWebApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
+        //获取所属logService的资源
+        logService = requiredWebApplicationContext.getBean("logService", LogServiceImpl.class);
+    }
 
     /**
      * 分页控制

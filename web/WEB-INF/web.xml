@@ -6,4 +6,15 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+
+    <!--看源码得知，创建web applicationContext时，需要context_param,以及之下的CONFIG_LOCATION_PARAM和CONTEXT_CLASS_PARAM-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <!--当tomcat启动时，就会加载此文件，然后创建一个WebApplicationContext-->
+        <param-value>classpath:applicationContext.xml</param-value>
+    </context-param>
+    <!--使用监听器，自动加载applicationContext.xml文件-->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 </web-app>
