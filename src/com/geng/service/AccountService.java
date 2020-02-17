@@ -31,5 +31,5 @@ public interface AccountService {
      * @param account
      * @return
      */
-    int login(Account account);
+    Account login(Account account);
 }

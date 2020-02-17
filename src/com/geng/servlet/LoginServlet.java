@@ -55,13 +55,17 @@ public class LoginServlet extends HttpServlet {
         Account account = new Account();
         account.setAccNo(accNo);
         account.setPassword(Integer.parseInt(password));
-        int returnCode = accountService.login(account);
-        if (returnCode == statusForFirm.SUCCESS) {
+        Account loginAccount = accountService.login(account);
+        HttpSession session = req.getSession();
+        if (loginAccount != null && !loginAccount.equals("")) {
+            session = req.getSession();
+            session.setAttribute("name", loginAccount.getName());
+            session.setAttribute("code", statusForFirm.ERROR);
             req.getRequestDispatcher("/remit.jsp").forward(req, res);
+
         } else {
-            HttpSession session = req.getSession();
             //session设置返回码
-            session.setAttribute("code", returnCode);
+            session.setAttribute("code", statusForFirm.ERROR);
             req.getRequestDispatcher("/error.jsp").forward(req, res);
         }
     }

@@ -11,48 +11,58 @@
     <title>转账页面</title>
     <!-- 引入 Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<form class="form-horizontal" action="remit" method="post" role="form">
-    <div class="form-group">
-        <label for="outAccNo" class="col-sm-2 control-label">转账账户</label>
-        <div class="col-sm-2">
-            <input type="text" class="form-control" id="outAccNo" name="outAccNo" placeholder="请输入转账账户">
+<div>
+    <p>
+        当前用户:
+        <a href="index.jsp" style="color: black;">${sessionScope.name}</a>
+    </p>
+</div>
+<div style="margin-left: 600px;margin-top: 250px;">
+    <form class="form-horizontal" action="remit" method="post" role="form">
+        <div class="form-group">
+            <label for="outAccNo" class="col-sm-2 control-label">转账账户</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="outAccNo" name="outAccNo" placeholder="请输入转账账户">
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label for="outPassword" class="col-sm-2 control-label">密码</label>
-        <div class="col-sm-2">
-            <input type="password" class="form-control" id="outPassword" name="outPassword" placeholder="请输入密码">
+        <div class="form-group">
+            <label for="outPassword" class="col-sm-2 control-label">密码</label>
+            <div class="col-sm-2">
+                <input type="password" class="form-control" id="outPassword" name="outPassword" placeholder="请输入密码">
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label for="outBalance" class="col-sm-2 control-label">金额</label>
-        <div class="col-sm-2">
-            <input type="text" class="form-control" id="outBalance" name="outBalance" placeholder="请输入金额">
+        <div class="form-group">
+            <label for="outBalance" class="col-sm-2 control-label">金额</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="outBalance" name="outBalance" placeholder="请输入金额">
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label for="inAccNo" class="col-sm-2 control-label">收款账号</label>
-        <div class="col-sm-2">
-            <input type="text" class="form-control" id="inAccNo" name="inAccNo" placeholder="请输入收款账号">
+        <div class="form-group">
+            <label for="inAccNo" class="col-sm-2 control-label">收款账号</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="inAccNo" name="inAccNo" placeholder="请输入收款账号">
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label for="inName" class="col-sm-2 control-label">收款人姓名</label>
-        <div class="col-sm-2">
-            <input type="text" class="form-control" id="inName" name="inName" placeholder="请输入收款人姓名">
+        <div class="form-group">
+            <label for="inName" class="col-sm-2 control-label">收款人姓名</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="inName" name="inName" placeholder="请输入收款人姓名">
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">转账</button>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">转账</button>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>
 </body>
 </html>

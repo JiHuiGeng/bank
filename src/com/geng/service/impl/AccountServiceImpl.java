@@ -164,13 +164,7 @@ public class AccountServiceImpl implements AccountService {
      * @return
      */
     @Override
-    public int login(Account account) {
-        Account loginAccount = accountMapper.selectByAccNoAndPW(account);
-        if (loginAccount != null && !loginAccount.equals("")) {
-            return statusForFirm.SUCCESS;
-        } else {
-            //失败
-            return statusForFirm.ERROR;
-        }
+    public Account login(Account account) {
+        return accountMapper.selectByAccNoAndPW(account);
     }
 }
