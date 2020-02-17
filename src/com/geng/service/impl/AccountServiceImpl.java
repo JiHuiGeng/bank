@@ -156,4 +156,21 @@ public class AccountServiceImpl implements AccountService {
     public List<Account> selectAll() {
         return accountMapper.selectAll();
     }
+
+    /**
+     * login
+     *
+     * @param account
+     * @return
+     */
+    @Override
+    public int login(Account account) {
+        Account loginAccount = accountMapper.selectByAccNoAndPW(account);
+        if (loginAccount != null && !loginAccount.equals("")) {
+            return statusForFirm.SUCCESS;
+        } else {
+            //失败
+            return statusForFirm.ERROR;
+        }
+    }
 }

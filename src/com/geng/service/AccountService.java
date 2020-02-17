@@ -25,4 +25,11 @@ public interface AccountService {
      * @return
      */
     List<Account> selectAll();
+
+    /**
+     * login
+     * @param account
+     * @return
+     */
+    int login(Account account);
 }

@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 /**
  * 转账控制层
  */
-@WebServlet("/remit")
+@WebServlet(value = {"/remit"})
 public class RemitServlet extends HttpServlet {
     private AccountService accountService;
     private StatusForFirm statusForFirm;
@@ -68,13 +68,13 @@ public class RemitServlet extends HttpServlet {
 
         if (returnCode == statusForFirm.SUCCESS) {
             //如果返回成功跳转log页面
-            res.sendRedirect("/bank/show");
+            res.sendRedirect("/show");
         } else {
             //失败跳转error页面
             HttpSession session = req.getSession();
             //session设置返回码
             session.setAttribute("code", returnCode);
-            res.sendRedirect("/bank/error.jsp");
+            res.sendRedirect("/error.jsp");
         }
     }
 }
