@@ -19,6 +19,10 @@
     <select id="selectAll">
         SELECT * FROM account;
     </select>
+    <!--insertAccount-->
+    <insert id="insertAccount" parameterType="account">
+        insert into account values(default,#{accNo},#{password},#{balance},#{name});
+    </insert>
     <!--updateBalanceByAccNo-->
     <update id="updateBalanceByAccNo" parameterType="account">
         UPDATE account SET balance=balance+#{balance} WHERE accNo=#{accNo};

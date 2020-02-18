@@ -7,6 +7,7 @@ import com.geng.pojo.Log;
 import com.geng.service.AccountService;
 import com.geng.utils.StatusForFirm;
 import org.apache.ibatis.io.Resources;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -46,7 +47,7 @@ public class AccountServiceImpl implements AccountService {
      * @throws IOException
      */
     @Override
-    public int remit(Account in, Account out) throws IOException {
+    public String remit(Account in, Account out) throws IOException {
         Account selectByOut = accountMapper.selectByAccNoAndPW(out);
         if (selectByOut != null) {
             //如果转出金额<=余额，那么允许进行下一步
@@ -166,5 +167,27 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Account login(Account account) {
         return accountMapper.selectByAccNoAndPW(account);
+    }
+
+    /**
+     * createAccount
+     *
+     * @param account
+     * @return
+     */
+    @Override
+    public String createAccount(Account account) {
+        String returnCode = null;
+        if (account.getAccNo() == null && account.getAccNo().equals("")) {
+            return statusForFirm.ACCOUNT_IS_EMPTY;
+        }
+        int index = accountMapper.insertAccount(account);
+        if (index > 0) {
+            returnCode = statusForFirm.SUCCESS;
+        } else {
+            returnCode = statusForFirm.ERROR;
+
+        }
+        return returnCode;
     }
 }

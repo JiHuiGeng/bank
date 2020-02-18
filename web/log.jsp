@@ -29,8 +29,8 @@
         <thead>
         <c:forEach items="${pageHelper.list}" var="list">
             <tr>
-                <td>${list.inAccNo}</td>
                 <td>${list.outAccNo}</td>
+                <td>${list.inAccNo}</td>
                 <td>${list.money}</td>
             </tr>
         </c:forEach>

@@ -17,7 +17,7 @@ public interface AccountService {
      * @param out
      * @return
      */
-    int remit(Account in, Account out) throws IOException;
+    String remit(Account in, Account out) throws IOException;
 
     /**
      * selectAll
@@ -28,8 +28,17 @@ public interface AccountService {
 
     /**
      * login
+     *
      * @param account
      * @return
      */
     Account login(Account account);
+
+    /**
+     * createAccount
+     *
+     * @param account
+     * @return
+     */
+    String createAccount(Account account);
 }

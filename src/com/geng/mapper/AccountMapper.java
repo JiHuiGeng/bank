@@ -45,6 +45,13 @@ public interface AccountMapper {
      */
     List<Account> selectAll();
 
+    /**
+     * insertAccount
+     *
+     * @param account
+     * @return
+     */
+    int insertAccount(Account account);
 
     /**
      * updateBalanceByAccNo

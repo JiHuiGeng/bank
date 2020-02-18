@@ -64,7 +64,7 @@ public class RemitServlet extends HttpServlet {
         //前端传来的转入账户所属姓名
         accountIn.setName(req.getParameter("inName"));
         //调用accountService下的remit方法
-        int returnCode = accountService.remit(accountIn, accountOut);
+        String returnCode = accountService.remit(accountIn, accountOut);
 
         if (returnCode == statusForFirm.SUCCESS) {
             //如果返回成功跳转log页面
