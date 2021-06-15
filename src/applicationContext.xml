@@ -17,7 +17,7 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/ssm"/>
         <property name="username" value="root"/>
-        <property name="password" value="123456"/>
+        <property name="password" value="root"/>
     </bean>
     <!--将数据源放入sqlSessionFactory中-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

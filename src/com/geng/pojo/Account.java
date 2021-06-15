@@ -3,7 +3,7 @@ package com.geng.pojo;
 import java.math.BigDecimal;
 
 /**
- *
+ * @author gjh
  */
 public class Account {
     /**
