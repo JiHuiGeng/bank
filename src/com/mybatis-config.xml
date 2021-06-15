@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <package name="com.geng.pojo"/>
+        <package name="com.geng.pojo.Account"/>
+        <package name="com.geng.pojo.Log"/>
     </typeAliases>
 </configuration>
